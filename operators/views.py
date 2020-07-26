@@ -1,3 +1,5 @@
+from django.views.generic import ListView
+
 from django.shortcuts import render,get_object_or_404
 from operators.forms import OpeatorForm
 from .models import Operator
@@ -6,6 +8,14 @@ from django.urls import reverse
 from django.http import HttpResponse,HttpResponseRedirect
 
 # Create your views here.
+
+class Operator_list(ListView):
+    queryset = Operator.objects.filter(soft_delete=0)
+    template_name = 'operators/list.html'
+
+    def get_context_data(self,*args, **kwargs):
+        context = super().get_context_data(*args,**kwargs)
+        return context
 
 
 def show(request):

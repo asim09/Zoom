@@ -9,6 +9,14 @@
             <table style="padding-bottom: 5px">
                 {{ operator_form.as_p }}
             </table>
+            <div class="">
+
+                <select>
+                    {% for i in opr %}
+                    <option>{{  i.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
             <button type="submit">Submit</button>
         </form>
 

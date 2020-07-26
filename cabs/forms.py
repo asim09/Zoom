@@ -1,18 +1,30 @@
 from django import forms
+from django.forms import ModelForm, Select
 
 from .models import Cab
+from operators.models import Operator
 
-# class OpeatorForm(forms.Form):
-#     name = forms.CharField(label='Operator name', max_length=100)
-#     mobile = forms.IntegerField(label='Operator Mobile')
-#     email = forms.EmailField(label='Operator Email',)
-#     city = forms.CharField(label='City',)
+def get_opearators(request):
+    opr = Operator.objects.filter(soft_delete=0)
+    print(opr)
+    return opr
 
+# class CabForm(forms.Form):
+#     cab_type_id = forms.IntegerField()
+#     model_name = forms.CharField()
+#     model_number = forms.IntegerField()
+#     city = forms.CharField()
+#     seats = forms.IntegerField()
+#     operator_id = forms.Select()
+#     is_active = forms.BooleanField()
 
 class CabForm(forms.ModelForm):
     class Meta:
         model = Cab
 
-        fields = '__all__'
+        fields = ['cab_type_id','model_name','model_number','city','seats','operator_id','is_active']
 
-        exclude = ['soft_delete','is_active']
+        widgets = {
+            'operator_id': Select(),
+        }
+

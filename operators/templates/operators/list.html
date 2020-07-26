@@ -19,8 +19,26 @@
       <th scope="col">Delete</th>
     </tr>
   </thead>
-        {% if data %}
-    {% for q in data %}
+{#    {% if data %}#}
+{#    {% for q in data %}#}
+{#  <tbody>#}
+{#    <tr>#}
+{#      <th scope="row">{{ q.id }}</th>#}
+{#      <td>{{ q.name | title }}</td>#}
+{#      <td>{{ q.city | title}}</td>#}
+{#      <td>{{ q.mobile }}</td>#}
+{#      <td>{{ q.email }}</td>#}
+{#      <td><a href="{% url 'operator_edit' q.id %}">Edit</a> </td>#}
+{#      <td><a href="{% url 'operator_delete' q.id %}">Delete</a> </td>#}
+{#    </tr>#}
+{##}
+{#  </tbody>#}
+{##}
+{#    {% endfor %}#}
+{#    {% endif %}#}
+
+        {% if object_list %}
+    {% for q in object_list %}
   <tbody>
     <tr>
       <th scope="row">{{ q.id }}</th>
@@ -33,10 +51,9 @@
     </tr>
 
   </tbody>
-{#        <a class="btn btn-primary" style="margin-left: 30px" href="{% url 'operator_delete' o.id %}" role="button">Delete Operator</a>#}
 
     {% endfor %}
-            {% endif %}
+    {% endif %}
     </div>
 
 

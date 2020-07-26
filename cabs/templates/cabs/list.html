@@ -1,43 +1,24 @@
-{% extends 'base.html' %}
+<div class="container mt-5">
+  <div class="form-group">
+      <input name="" id="search" class="form-group" placeholder="Enter name">
+  </div>
+  <div id="match-list"></div>
+  </div>
 
 
-{% block content %}
-    <div class="container">
-    <p>Cab List Show</p>
-
-        <a class="btn btn-primary" style="margin-left: 980px" href="{% url 'cab_add' %}" role="button">Add Cab</a><br>
-<br>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#ID</th>
-      <th scope="col">User Name</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Email</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th>
-    </tr>
-  </thead>
-        {% if data %}
-    {% for q in data %}
-  <tbody>
-    <tr>
-      <th scope="row">{{ q.id }}</th>
-      <td>{{ q.name | title }}</td>
-      <td>{{ q.city | title}}</td>
-      <td>{{ q.mobile }}</td>
-      <td>{{ q.email }}</td>
-      <td><a href="{% url 'cab_edit' q.id %}">Edit</a> </td>
-      <td><a href="{% url 'cab_delete' q.id %}">Delete</a> </td>
-    </tr>
-
-  </tbody>
-{#        <a class="btn btn-primary" style="margin-left: 30px" href="{% url 'operator_delete' o.id %}" role="button">Delete Operator</a>#}
-
-    {% endfor %}
-            {% endif %}
-    </div>
+  <script>
 
 
-{% endblock %}
+    const search = document.getElementById('search');
+    const matchList = document.getElementById('match-list');
+
+
+    const searchStates = async searchText => {
+        const res = await fetch('api/advance_payment')
+        const states = await res.json();
+
+        console.log(states)
+    };
+
+    search.addEventListener('input', () => searchStates(search.value));
+    </script>
